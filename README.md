@@ -1,7 +1,7 @@
 # Reflection
 Fathan Naufal Adhitama (2206825965)
 
-### Commit 1
+### Commit 1 Reflection notes
 > What is inside the handle_connection method?
 
 Fungsi ini menerima koneksi TCP dalam parameter stream, yang kemudian akan dibaca menggunakan `BufReader` untuk membaca data dari stream.
@@ -20,7 +20,7 @@ Fungsi ini menerima koneksi TCP dalam parameter stream, yang kemudian akan dibac
 
 Jadi, secara keseluruhan, fungsi handle_connection ini membaca setiap baris dari koneksi TCP yang diberikan hingga menemukan baris kosong (menandakan akhir permintaan HTTP), dan kemudian mencetak permintaan HTTP ke konsol.
 
-### Commit 2
+### Commit 2 Reflection notes
 ![Commit 2 screen capture](/assets/images/commit2.jpg) 
 Pada kode yang baru ditambahkan ke method `handle_connection`, 
 ```rust
@@ -35,3 +35,9 @@ let status_line = "HTTP/1.1 200 OK";
     stream.write_all(response.as_bytes()).unwrap();
 ```
 baris-baris ini akan mengirimkan HTTP Response ke client yang berisi `status_line`, panjang konten, dan konten HTML dari `hello.html`. response ini dikirimkan kembali ke klien melalui koneksi TCP dengan baris kode `stream.write_all(response.as_bytes()).unwrap();`
+
+### Commit 3 Reflection notes
+![Commit 3 screen capture](/assets/images/commit3.jpg) 
+Berdasarkan langkah-langkah yang dijelaskan pada Chapter 20:
+- Kita dapat memisahkan respons yang diberikan dengan melakukan pengecekan pada `request_line` apakah sama dengan request line ke path `/`. Jika iya, akan mengirimkan `hello.html`, jika tidak, akan ke `404.html`
+- Kode yang awalnya ditulis perlu di-_refactor_ karena masih terdapat duplikasi kode. Dengan melakukan refactoring, blok if-else hanya akan berisi kode yang membedakan kedua kondisi saja dan menghilangkan kode yang bersifat redundan
