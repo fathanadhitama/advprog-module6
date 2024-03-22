@@ -48,3 +48,9 @@ Pada simulasi ini, terdapat 2 request yaitu path `/` dan `/sleep`. Jika kita men
 ### Commit 5 Reflection notes
 **_Try to understand how the ThreadPool works._**
 Untuk menerapkan _multithreading_ pada program kita, salah satu cara yang dapat digunakan adalah dengan menggunakan ThreadPool. ThreadPool adalah kumpulan _spawned_ Thread yang menunggu dan siap untuk melakukan task. Ketika satu Thread sedang mengerjakan suatu request, Thread yang lain dapat mengerjakan request lain tanpa harus menunggu request pertama selesai. Dengan begitu, kita dapat meng-handle beberapa request dalam waktu yang bersamaan. Cara ini dapat meningkatkan Throughput dari program kita. Akan tetapi, Thread akan dibuat dengan jumlah yang terbatas (dalam contoh ini, hanya akan dibuat 4 thread) untuk melindungi program kita dari serangan Denial of Service (DoS).
+
+### Commit Bonus Reflection notes
+**_Try to create a function build as a replacement to new and compare._**
+
+Dengan mengikuti langkah pada [Chapter 12](https://rust-book.cs.brown.edu/ch12-03-improving-error-handling-and-modularity.html), saya mencoba untuk melakukan Function Improvement pada method `new` dengan membuat method `build` dan menerapkan Error Handling yang lebih baik. Karena pada umumnya method `new` diekspektasi agar tidak pernah gagal. Oleh karena itu, perlu diganti dengan penggunaan method `build` yang akan meng-handle error yang mungkin terjadi di method `new` sebelumnya yaitu apabila ThreadPool dibuat dengan size 0. Dengan menggunakan method `build` ini, error akan dapat dihandle dengan lebih baik dengan me-return Result yang akan berisi ThreadPool jika berhasil, dan akan memberikan pesan error apabila gagal.
+![Commit Bonus screen capture](/assets/images/commitbonus.jpg) 
