@@ -41,3 +41,6 @@ baris-baris ini akan mengirimkan HTTP Response ke client yang berisi `status_lin
 Berdasarkan langkah-langkah yang dijelaskan pada Chapter 20:
 - Kita dapat memisahkan respons yang diberikan dengan melakukan pengecekan pada `request_line` apakah sama dengan request line ke path `/`. Jika iya, akan mengirimkan `hello.html`, jika tidak, akan ke `404.html`
 - Kode yang awalnya ditulis perlu di-_refactor_ karena masih terdapat duplikasi kode. Dengan melakukan refactoring, blok if-else hanya akan berisi kode yang membedakan kedua kondisi saja dan menghilangkan kode yang bersifat redundan
+
+### Commit 4 Reflection notes
+Pada simulasi ini, terdapat 2 request yaitu path `/` dan `/sleep`. Jika kita mengakses path `/`, halaman akan langsung diload sementara path `/sleep` akan menunggu selama 10 detik sebelum diload. Akan tetapi, apabila kita mengakses path `/sleep` dulu kemudian path `/`, kedua path akan menunggu selama 10 detik karena path `/` harus menunggu hingga request sleep selesai diproses. Ini dapat terjadi karena server yang sekarang bersifat single-threaded yang berarti akan memproses request secara bergantian. server tidak akan memproses request kedua jika request pertama belum selesai. Masalah ini akan semakin parah apabila request bertambah banyak.
